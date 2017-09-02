@@ -1,12 +1,10 @@
 var HTTPS = require('https');
-var querystring = require('querystring');
+//var querystring = require('querystring');
 var searchText = '';
 var botID = process.env.BOT_ID;
 var cards = '';
 var cardID = '';
 
-
-  
 function getCards () {
   var options = {
       host : 'api.fiveringsdb.com',
@@ -28,9 +26,6 @@ function getCards () {
     }); 
 }
  
-getCards();
-
-
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botCardRegex = /^!card/,
@@ -39,6 +34,7 @@ function respond() {
   if(request.text && (botCardRegex.test(request.text) || botRuleRegex.test(request.text))) {
     //Search for Card info via API
     if (botCardRegex.test(request.text)) {
+      getCards ();
       searchText = "Card Search" + request.text.replace(/!card/i, '');
       //console.log(cardMatch);
       //var cardMatch = 
