@@ -17,9 +17,9 @@ function getCards () {
         console.log("\nstatus code: ", res.statusCode);
         res.setEncoding('utf8');
         res.on('records', function(data) {
-            console.log('Parsing JSON data.\n');
+            console.log("Parsing JSON data.");
             console.log(JSON.parse(data));
-            console.log('JSON data parsed.\n');
+            console.log("JSON data parsed.");
         });
     });
     //getReq.end();
