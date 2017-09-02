@@ -19,8 +19,9 @@ function getCards () {
         res.on('records', function(data) {
             //console.log(JSON.parse(data));
             jsonObj = JSON.parse(data);
+            cards = jsonObj.name;
+            cardID = jsonObj.id;
         });
-        console.log ('Cards - ' + jsonObj);
     });
     
     getReq.end();
@@ -38,8 +39,7 @@ function respond() {
     //Search for Card info via API
     if (botCardRegex.test(request.text)) {
       getCards ();
-      //cards = '';
-      //console.log ('Names - ' + jsonObj);
+      console.log ('Names - ' + cards);
       cardID = jsonObj.id;
       searchText = "Card Search" + request.text.replace(/!card/i, '');
       //console.log(cardMatch);
