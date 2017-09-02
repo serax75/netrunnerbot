@@ -22,8 +22,8 @@ function getCards () {
         });
     });
     
-    getReq.end();
     console.log (jsonObj);
+    getReq.end();
     getReq.on('error', function(err){
         console.log("Error: ", err);
     }); 
