@@ -23,6 +23,7 @@ function getCards () {
     });
     
     getReq.end();
+    console.log ('Names - ' + jsonObj);
     getReq.on('error', function(err){
         console.log("Error: ", err);
     }); 
@@ -38,7 +39,7 @@ function respond() {
     if (botCardRegex.test(request.text)) {
       getCards ();
       //cards = '';
-      console.log ('Names - ' + jsonObj);
+      //console.log ('Names - ' + jsonObj);
       cardID = jsonObj.id;
       searchText = "Card Search" + request.text.replace(/!card/i, '');
       //console.log(cardMatch);
