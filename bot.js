@@ -3,6 +3,7 @@ var querystring = require('querystring');
 var searchText = '';
 var botID = process.env.BOT_ID;
 var cards = '';
+var cardID = '';
 
 
   
@@ -16,7 +17,10 @@ function getCards () {
   var getReq = HTTPS.get(options, function(res) {
         console.log("\nstatus code: ", res.statusCode);
         res.on('data', function(data) {
-            console.log( JSON.parse(data) );
+            //console.log( JSON.parse(data) );
+            var jsonObj = JSON.parse(data);
+            cards = jsonObj.name;
+            cardID = jsonObj.id;
         });
     });
     
@@ -27,6 +31,7 @@ function getCards () {
  
 getCards();
 
+
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botCardRegex = /^!card/,
@@ -35,9 +40,9 @@ function respond() {
   if(request.text && (botCardRegex.test(request.text) || botRuleRegex.test(request.text))) {
     //Search for Card info via API
     if (botCardRegex.test(request.text)) {
-      //searchText = request.text.replace(/!card/i, '');
-      console.log(cards);
-      searchText = "Card Search";
+      searchText = "Card Search" + request.text.replace(/!card/i, '');
+      //console.log(cardMatch);
+      //var cardMatch = 
       this.res.writeHead(200);
       postMessage();
       this.res.end(); 
