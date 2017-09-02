@@ -4,13 +4,15 @@ var searchText = '';
 var botID = process.env.BOT_ID;
 var cards = '';
 
+
+  
 function getCards () {
   var options = {
-    host = 'api.fiveringsdb.com',
-    port = '443',
-    path = '/cards'
-  }
-
+      host : 'api.fiveringsdb.com',
+      port : '443',
+      path : '/cards'
+    };
+    
   var getReq = HTTPS.GET(options, function(res) {
         console.log("\nstatus code: ", res.statusCode);
         res.on('data', function(data) {
@@ -23,7 +25,7 @@ function getCards () {
     }); 
 }
  
-getCall();
+getCards();
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
