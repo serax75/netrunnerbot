@@ -1,4 +1,7 @@
 var HTTPS = require('https');
+var request = require('request');
+var url = 'https://api.fiveringsdb.com/cards';
+
 //var querystring = require('querystring');
 var searchText = '';
 var botID = process.env.BOT_ID;
@@ -7,26 +10,20 @@ var cardID = '';
 var jsonObj = '';
 
 function getCards () {
-  var options = {
-      host : 'api.fiveringsdb.com',
-      path : '/cards',
-      timeout : '1000'
-    };
-    
-  var getReq = HTTPS.get(options, function(res) {
-        console.log("\nstatus code: ", res.statusCode);
-        res.setEncoding('utf8');
-        res.on('records', function(data) {
-            //console.log("Parsing JSON data.");
-            console.log(JSON.stringify(data));
-            //console.log("JSON data parsed.");
-            
-        });
-    });
-    //getReq.end();
-    getReq.on('error', function(err){
-        console.log("Error: ", err);
-    }); 
+  request.get({
+    url: url,
+    json: true,
+    headers: {'User-Agent': 'request'}
+  }, (err, res, data) => {
+    if (err) {
+      console.log('Error:', err);
+    } else if (res.statusCode !== 200) {
+      console.log('Status:', res.statusCode);
+    } else {
+      // data is already parsed as JSON:
+      console.log(data.html_url);
+    }
+});
 }
  
 function respond() {
