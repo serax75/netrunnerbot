@@ -5,10 +5,12 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^!card (.*)$/;
-      searchText = $1;
+      botRegex = /^!card .+$/;
+      
 
   if(request.text && botRegex.test(request.text)) {
+    //Search for Card info via API
+    var searchText = request.replace(/!card /i, '');
     this.res.writeHead(200);
     postMessage();
     this.res.end();
@@ -22,7 +24,7 @@ function respond() {
 function postMessage() {
   var botResponse, options, body, botReq;
 
-  botResponse = "searchText\n";
+  botResponse = searchText;
 
   options = {
     hostname: 'api.groupme.com',
