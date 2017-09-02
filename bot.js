@@ -4,21 +4,26 @@ var searchText = '';
 var botID = process.env.BOT_ID;
 var cards = '';
 
-var options = {
-  host: 'api.fiveringsdb.com',
-  port: 443,
-  path: '/cards',
-  accept: '*/*'
-};
+function getCards () {
+  var options = {
+    host = 'api.fiveringsdb.com',
+    port = '443',
+    path = '/cards'
+  }
 
-var req = HTTPS.request(options, function(res) {
-  console.log(res.statusCode);
-  res.on('data', function(d) {
-    process.stdout.write(d);
-  });
-});
-
-req();
+  var getReq = HTTPS.GET(options, function(res) {
+        console.log("\nstatus code: ", res.statusCode);
+        res.on('data', function(data) {
+            console.log( JSON.parse(data) );
+        });
+    });
+    
+    getReq.on('error', function(err){
+        console.log("Error: ", err);
+    }); 
+}
+ 
+getCall();
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
