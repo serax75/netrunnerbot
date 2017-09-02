@@ -20,6 +20,7 @@ function getCards () {
         });
     });
     
+    getReq.end();
     getReq.on('error', function(err){
         console.log("Error: ", err);
     }); 
