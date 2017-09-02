@@ -29,7 +29,7 @@ function getCards () {
     }); 
 }
  
-getCards();
+//getCards();
 
 
 function respond() {
