@@ -18,6 +18,7 @@ var req = HTTPS.request(options, function(res) {
   });
 });
 
+req();
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
