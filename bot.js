@@ -13,7 +13,7 @@ function getCards () {
       path : '/cards'
     };
     
-  var getReq = HTTPS.GET(options, function(res) {
+  var getReq = HTTPS.get(options, function(res) {
         console.log("\nstatus code: ", res.statusCode);
         res.on('data', function(data) {
             console.log( JSON.parse(data) );
