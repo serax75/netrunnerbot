@@ -9,11 +9,13 @@ var jsonObj = '';
 function getCards () {
   var options = {
       host : 'api.fiveringsdb.com',
-      path : '/cards'
+      path : '/cards',
+      timeout : '1000'
     };
     
   var getReq = HTTPS.get(options, function(res) {
         console.log("\nstatus code: ", res.statusCode);
+        res.setEncoding('utf8');
         res.on('data', function(data) {
             console.log( JSON.parse(data) );
             //jsonObj = JSON.parse(data);
