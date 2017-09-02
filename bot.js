@@ -20,9 +20,9 @@ function getCards () {
             //console.log(JSON.parse(data));
             jsonObj = JSON.parse(data);
         });
+        console.log (jsonObj);
     });
     
-    console.log (jsonObj);
     getReq.end();
     getReq.on('error', function(err){
         console.log("Error: ", err);
