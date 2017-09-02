@@ -15,8 +15,8 @@ function getCards () {
   var getReq = HTTPS.get(options, function(res) {
         console.log("\nstatus code: ", res.statusCode);
         res.on('data', function(data) {
-            //console.log( JSON.parse(data) );
-            jsonObj = JSON.parse(data);
+            console.log( JSON.parse(data) );
+            //jsonObj = JSON.parse(data);
         });
     });
     
