@@ -20,7 +20,7 @@ function getCards () {
             //console.log(JSON.parse(data));
             jsonObj = JSON.parse(data);
             cards = jsonObj.name;
-            console.log('Cards - ' + cards);
+            console.log('Cards - ' + jsonObj);
             cardID = jsonObj.id;
         });
     });
