@@ -23,7 +23,7 @@ function getCards () {
     });
     
     getReq.end();
-    console.log ('Names - ' + jsonObj);
+    console.log (jsonObj);
     getReq.on('error', function(err){
         console.log("Error: ", err);
     }); 
