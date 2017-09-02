@@ -2,8 +2,13 @@ var HTTPS = require('https');
 var querystring = require('querystring');
 var searchText = '';
 
-var host = 'https://api.fiveringsdb.com/cards';
-var cards = HTTPS.get(host); 
+var options = {
+  host: 'https://api.fiveringsdb.com/',
+  port: 443,
+  path: 'cards',
+};
+
+var cards = HTTPS.get(options); 
 
 var botID = process.env.BOT_ID;
 
