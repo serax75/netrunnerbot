@@ -17,8 +17,8 @@ function getCards () {
         console.log("\nstatus code: ", res.statusCode);
         res.setEncoding('utf8');
         res.on('records', function(data) {
-            console.log(JSON.parse(data));
-            //jsonObj = JSON.parse(data);
+            //console.log(JSON.parse(data));
+            jsonObj = JSON.parse(data);
         });
     });
     
@@ -38,6 +38,7 @@ function respond() {
     if (botCardRegex.test(request.text)) {
       getCards ();
       cards = jsonObj.name;
+      console.log (cards);
       cardID = jsonObj.id;
       searchText = "Card Search" + request.text.replace(/!card/i, '');
       //console.log(cardMatch);
