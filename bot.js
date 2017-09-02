@@ -20,7 +20,7 @@ function getCards () {
             //console.log(JSON.parse(data));
             jsonObj = JSON.parse(data);
         });
-        console.log (jsonObj);
+        console.log ('Cards - ' + jsonObj);
     });
     
     getReq.end();
