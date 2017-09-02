@@ -18,10 +18,7 @@ function getCards () {
             //console.log( JSON.parse(data) );
             jsonObj = JSON.parse(data);
         });
-        cards = jsonObj.name;
-        cardID = jsonObj.id;
     });
-    
     
     getReq.on('error', function(err){
         console.log("Error: ", err);
@@ -37,6 +34,8 @@ function respond() {
     //Search for Card info via API
     if (botCardRegex.test(request.text)) {
       getCards ();
+      cards = jsonObj.name;
+      cardID = jsonObj.id;
       searchText = "Card Search" + request.text.replace(/!card/i, '');
       //console.log(cardMatch);
       //var cardMatch = 
