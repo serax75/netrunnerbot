@@ -1,19 +1,34 @@
 var HTTPS = require('https');
+var querystring = require('querystring');
 var searchText = '';
+
+var host = '';
+var apiKey = '*****';
+var sessionId = null;
+var deckId = '68DC5A20-EE4F-11E2-A00C-0858C0D5C2ED';
 
 var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^!card .+$/;
-      
+      botCardRegex = /^!card/,
+      botRuleRegex = /^!rule/; 
 
-  if(request.text && botRegex.test(request.text)) {
+  if(request.text && (botCardRegex.test(request.text) || botRuleRegex.test(request.text))) {
     //Search for Card info via API
-    searchText = request.text.replace(/!card /i, '');
-    this.res.writeHead(200);
-    postMessage();
-    this.res.end();
+    if (botCardRegex.test(request.text)) {
+      //searchText = request.text.replace(/!card/i, '');
+      searchText = "Card Search";
+      this.res.writeHead(200);
+      postMessage();
+      this.res.end(); 
+    } else {
+      //searchText = request.text.replace(/!rule/i, '');
+      searchText = "Rule Search";
+      this.res.writeHead(200);
+      postMessage();
+      this.res.end();
+    }
   } else {
     console.log("don't care");
     this.res.writeHead(200);
