@@ -27,7 +27,7 @@ function respond() {
   if(request.text && (botCardRegex.test(request.text) || botRuleRegex.test(request.text))) {
     //Search for Card info via API
     if (botCardRegex.test(request.text)) {
-      getCards ();
+      //getCards ();
       searchText = "Card Search" + request.text.replace(/!card/i, '');
       this.res.writeHead(200);
       postMessage();
