@@ -15,11 +15,12 @@ function getCards () {
     
   var getReq = HTTPS.get(options, function(res) {
         console.log("\nstatus code: ", res.statusCode);
-        //res.setEncoding('utf8');
+        res.setEncoding('utf8');
         res.on('records', function(data) {
-            console.log("Parsing JSON data.");
-            console.log(JSON.parse(data));
-            console.log("JSON data parsed.");
+            //console.log("Parsing JSON data.");
+            console.log(JSON.stringify(data));
+            //console.log("JSON data parsed.");
+            
         });
     });
     //getReq.end();
