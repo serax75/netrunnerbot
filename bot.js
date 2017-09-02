@@ -38,7 +38,7 @@ function respond() {
     if (botCardRegex.test(request.text)) {
       getCards ();
       cards = jsonObj.name;
-      console.log (jsonObj.name);
+      console.log ('Names - ' + jsonObj.name);
       cardID = jsonObj.id;
       searchText = "Card Search" + request.text.replace(/!card/i, '');
       //console.log(cardMatch);
