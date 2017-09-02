@@ -2,10 +2,19 @@ var HTTPS = require('https');
 var querystring = require('querystring');
 var searchText = '';
 
-var host = '';
-var apiKey = '*****';
-var sessionId = null;
-var deckId = '68DC5A20-EE4F-11E2-A00C-0858C0D5C2ED';
+var host = 'https://api.fiveringsdb.com/cards';
+var cards = https.get('host', (res) => {
+  //console.log('statusCode:', res.statusCode);
+  //console.log('headers:', res.headers);
+
+  res.on('data', (d) => {
+    //Process data here into array to search for values
+    process.stdout.write(d);
+  });
+
+}).on('error', (e) => {
+  console.error(e);
+}); 
 
 var botID = process.env.BOT_ID;
 
@@ -70,6 +79,5 @@ function postMessage() {
   });
   botReq.end(JSON.stringify(body));
 }
-
 
 exports.respond = respond;
