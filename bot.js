@@ -3,7 +3,7 @@ var querystring = require('querystring');
 var searchText = '';
 
 var host = 'https://api.fiveringsdb.com/cards';
-var cards = https.get('host', (res) => {
+var cards = HTTPS.get('host', (res) => {
   //console.log('statusCode:', res.statusCode);
   //console.log('headers:', res.headers);
 
