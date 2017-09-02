@@ -20,6 +20,7 @@ function getCards () {
             //console.log(JSON.parse(data));
             jsonObj = JSON.parse(data);
             cards = jsonObj.name;
+            console.log('Cards - ' + cards);
             cardID = jsonObj.id;
         });
     });
@@ -39,7 +40,7 @@ function respond() {
     //Search for Card info via API
     if (botCardRegex.test(request.text)) {
       getCards ();
-      console.log ('Names - ' + cards);
+      //console.log ('Names - ' + cards);
       cardID = jsonObj.id;
       searchText = "Card Search" + request.text.replace(/!card/i, '');
       //console.log(cardMatch);
