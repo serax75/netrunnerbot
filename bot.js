@@ -10,7 +10,7 @@ function respond() {
 
   if(request.text && botRegex.test(request.text)) {
     //Search for Card info via API
-    var searchText = request.replace(/!card /i, '');
+    var searchText = request.text.replace(/!card /i, '');
     this.res.writeHead(200);
     postMessage();
     this.res.end();
