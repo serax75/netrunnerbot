@@ -3,8 +3,7 @@ var querystring = require('querystring');
 var searchText = '';
 
 var host = 'https://api.fiveringsdb.com/cards';
-var cards = HTTPS.get('host'); 
-
+var cards = HTTPS.get(host); 
 
 var botID = process.env.BOT_ID;
 
