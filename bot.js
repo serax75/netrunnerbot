@@ -4,6 +4,7 @@ var searchText = '';
 var botID = process.env.BOT_ID;
 var cards = '';
 var cardID = '';
+var jsonObj = '';
 
 function getCards () {
   var options = {
@@ -15,11 +16,12 @@ function getCards () {
         console.log("\nstatus code: ", res.statusCode);
         res.on('data', function(data) {
             //console.log( JSON.parse(data) );
-            var jsonObj = JSON.parse(data);
-            cards = jsonObj.name;
-            cardID = jsonObj.id;
+            jsonObj = JSON.parse(data);
         });
+        cards = jsonObj.name;
+        cardID = jsonObj.id;
     });
+    
     
     getReq.on('error', function(err){
         console.log("Error: ", err);
