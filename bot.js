@@ -1,16 +1,23 @@
 var HTTPS = require('https');
 var querystring = require('querystring');
 var searchText = '';
+var botID = process.env.BOT_ID;
+var cards = '';
 
 var options = {
-  host: 'https://api.fiveringsdb.com/',
+  host: 'api.fiveringsdb.com',
   port: 443,
-  path: 'cards',
+  path: '/cards',
+  accept: '*/*'
 };
 
-var cards = HTTPS.get(options); 
+var req = HTTPS.request(options, function(res) {
+  console.log(res.statusCode);
+  res.on('data', function(d) {
+    process.stdout.write(d);
+  });
+});
 
-var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
