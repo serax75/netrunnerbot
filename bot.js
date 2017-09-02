@@ -10,7 +10,6 @@ var cardID = '';
 function getCards () {
   var options = {
       host : 'api.fiveringsdb.com',
-      port : '443',
       path : '/cards'
     };
     
@@ -29,7 +28,7 @@ function getCards () {
     }); 
 }
  
-//getCards();
+getCards();
 
 
 function respond() {
