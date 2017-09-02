@@ -36,17 +36,13 @@ function respond() {
     //Search for Card info via API
     if (botCardRegex.test(request.text)) {
       getCards ();
-      //console.log ('Names - ' + cards);
-      cardID = jsonObj.id;
       searchText = "Card Search" + request.text.replace(/!card/i, '');
-      //console.log(cardMatch);
-      //var cardMatch = 
       this.res.writeHead(200);
       postMessage();
       this.res.end(); 
     } else {
-      //searchText = request.text.replace(/!rule/i, '');
-      searchText = "Rule Search";
+      getCards ();
+      searchText = "Card Search" + request.text.replace(/!rule/i, '');
       this.res.writeHead(200);
       postMessage();
       this.res.end();
