@@ -70,7 +70,8 @@ function respond() {
           }
           postMessage();
         } else {
-          sendText = 'No Results Found';
+          sendText = 'No Results Found - '+searchText;
+          postMessage();
         } 
       this.res.writeHead(200);
       
