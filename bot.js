@@ -48,9 +48,9 @@ function respond() {
       for (var i=0; i < cards.length; i++) {
         if (cardRegex.test(cards[i])) {
           searchResult.push(cards[i]);
-          //console.log(cards[i]+ ' matches '+searchText+' index '+i);
+          console.log(cards[i]+ ' matches '+searchText+' index '+i);
         } else {
-          //console.log('Tested \"' + searchText + '\" against ' +  cards[i] + ' - No Match');
+          console.log('Tested \"' + searchText + '\" against ' +  cards[i] + ' - No Match');
         }
       }
       if (searchResult.length == 1) {
