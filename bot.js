@@ -4,6 +4,7 @@ var url = 'https://api.fiveringsdb.com/cards';
 
 //var querystring = require('querystring');
 var searchText = '';
+var sendText = '';
 var botID = process.env.BOT_ID;
 var cards = [];
 var cardID = [];
@@ -12,23 +13,25 @@ var cardSet = [];
 request({
     url: url,
     json: true
-}, function (error, response, body) {
+    }, function (error, response, body) {
 
-    if (!error && response.statusCode === 200) {
+      if (!error && response.statusCode === 200) {
         //console.log(body.size); // Print the json response
         var numCards = (body.size);
         for (var i=0; i < numCards; i++) {
-          cards.push(body.records[i].name);
-          //console.log('Cards - ' + cards.length);
-          cardID.push(body.records[i].id);
+          cards.push(body.records[i].name.toLowerCase());
+          cards[i] = cards[i].replace(/ō/, 'o');
+          cards[i] = cards[i].replace(/ō/, 'o');
+          console.log('Cards - ' + cards[i]);
+          cardID.push(body.records[i].id.toLowerCase());
           //console.log('IDs - ' + cardID.length);
-          cardSet.push(body.records[i].pack_cards[0].pack.id);
+          cardSet.push(body.records[i].pack_cards[0].pack.id.toLowerCase());
           //console.log(cardSet);
           //console.log(body.records[i].name);
         }
-    }
-});
- 
+      } 
+    });
+    
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botCardRegex = /^!card/,
@@ -36,31 +39,43 @@ function respond() {
 
   if(request.text && (botCardRegex.test(request.text) || botRuleRegex.test(request.text))) {
     //Search for Card info via API
+    
     if (botCardRegex.test(request.text)) {
-      searchText = (request.text.replace(/!card/i, ''));
-      console.log(searchText);
-      var cardRegex = /searchText/;
+      searchText = (request.text.replace(/!card /i, ''));
+      //console.log(searchText);
+      var cardRegex = new RegExp (searchText);
+      //console.log(cardRegex);
       var searchResult = [];
       for (var i=0; i < cards.length; i++) {
         if (cardRegex.test(cards[i])) {
           searchResult.push(cards[i]);
+          //console.log(cards[i]+ ' matches '+searchText+' index '+i);
+        } else {
+          //console.log('Tested \"' + searchText + '\" against ' +  cards[i] + ' - No Match');
         }
       }
       if (searchResult.length == 1) {
-          var match = cards.indexOf(searchResult);
-          searchText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
-          console.log (searchText);
-        } else {
-          searchText = 'Too Many results - ';
-          for (var i=0; i < searchResult.length; i++) {
-            searchText += searchResult[i] + ' ';
+          var match = cards.indexOf(searchResult[0]);
+          //console.log('Match - ' + searchResult + ' ' + match)
+          sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          //console.log (searchText);
+        } else if (searchResult.length > 1) {
+          var match = cards.indexOf(searchResult[0]);
+          sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          postMessage();
+          sendText = 'Additional Results : '
+          for (var i=1; i < searchResult.length; i++) {
+            sendText += searchResult[i] + ' ';
           }
-        }  
+          postMessage();
+        } else {
+          sendText = 'No Results Found';
+        } 
       this.res.writeHead(200);
-      postMessage();
+      
       this.res.end(); 
     } else {
-      searchText = (request.text.replace(/!rule/i, ''));
+      searchText = (request.text.replace(/!rule /i, ''));
       this.res.writeHead(200);
       postMessage();
       this.res.end();
@@ -75,7 +90,7 @@ function respond() {
 function postMessage() {
   var botResponse, options, body, botReq;
 
-  botResponse = searchText;
+  botResponse = sendText;
 
   options = {
     hostname: 'api.groupme.com',
