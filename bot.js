@@ -50,7 +50,7 @@ function respond() {
           searchResult.push(cards[i]);
           console.log(cards[i]+ ' matches '+searchText+' index '+i);
         } else {
-          console.log('Tested \"' + searchText + '\" against ' +  cards[i] + ' - No Match');
+          console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
         }
       }
       if (searchResult.length == 1) {
