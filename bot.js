@@ -35,14 +35,13 @@ request({
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botCardRegex = /^!card/,
-      botRuleRegex = /^!rule/; 
+      botRuleRegex = /^!rule/;
 
   if(request.text && (botCardRegex.test(request.text) || botRuleRegex.test(request.text))) {
     //Search for Card info via API
     
     if (botCardRegex.test(request.text)) {
       searchText = (request.text.replace(/!card /i, ''));
-      //console.log(searchText);
       var cardRegex = new RegExp (searchText.toLowerCase());
       //console.log(cardRegex);
       var searchResult = [];
@@ -61,15 +60,18 @@ function respond() {
           postMessage();
           //console.log (searchText);
         } else if (searchResult.length > 1) {
-          var match = cards.indexOf(searchResult[0]);
+          match = cards.indexOf(searchResult[0]);
           sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
           postMessage();
-          sendText = 'Additional Results : '
+          sendText = 'Additional Results : ';
           for (var i=1; i < searchResult.length; i++) {
-            sendText += searchResult[i] + ' ';
+            sendText += searchResult[i];
+            if (i < searchResult.length) {
+              sendText += ', ';
+            }
           }
           postMessage();
-        } else {
+        } else{
           sendText = 'No Results Found - '+searchText;
           postMessage();
         } 
