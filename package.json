@@ -1,26 +1,25 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.1.2",
-  "description": "A sample Node.js app using Express 4",
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "## Introduction",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
   "dependencies": {
-    "director": "",
-    "cool-ascii-faces": "~1.3.x"
+    "director": "^1.2.8",
+    "request": "^2.81.0"
   },
-  "engines": {
-    "node": "0.10.x"
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "git+https://github.com/serax75/l5rtestbot.git"
   },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "license": "MIT"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/serax75/l5rtestbot/issues"
+  },
+  "homepage": "https://github.com/serax75/l5rtestbot#readme"
 }
