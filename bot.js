@@ -43,7 +43,7 @@ function respond() {
     if (botCardRegex.test(request.text)) {
       searchText = (request.text.replace(/!card /i, ''));
       //console.log(searchText);
-      var cardRegex = new RegExp (searchText);
+      var cardRegex = new RegExp (searchText.toLowerCase());
       //console.log(cardRegex);
       var searchResult = [];
       for (var i=0; i < cards.length; i++) {
