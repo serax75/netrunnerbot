@@ -66,7 +66,7 @@ function respond() {
           sendText = 'Additional Results : ';
           for (var i=1; i < searchResult.length; i++) {
             sendText += searchResult[i];
-            if (i < searchResult.length) {
+            if (i < searchResult.length-1) {
               sendText += ', ';
             }
           }
