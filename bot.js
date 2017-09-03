@@ -58,6 +58,7 @@ function respond() {
           var match = cards.indexOf(searchResult[0]);
           //console.log('Match - ' + searchResult + ' ' + match)
           sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          postMessage();
           //console.log (searchText);
         } else if (searchResult.length > 1) {
           var match = cards.indexOf(searchResult[0]);
