@@ -5,9 +5,9 @@ var url = 'https://api.fiveringsdb.com/cards';
 //var querystring = require('querystring');
 var searchText = '';
 var botID = process.env.BOT_ID;
-var cards = '';
-var cardID = '';
-var jsonObj = '';
+var cards = [];
+var cardID = [];
+var cardSet = [];
 
 request({
     url: url,
@@ -15,7 +15,17 @@ request({
 }, function (error, response, body) {
 
     if (!error && response.statusCode === 200) {
-        console.log(body); // Print the json response
+        //console.log(body.size); // Print the json response
+        var numCards = (body.size);
+        for (var i=0; i < numCards; i++) {
+          cards.push(body.records[i].name);
+          //console.log('Cards - ' + cards.length);
+          cardID.push(body.records[i].id);
+          //console.log('IDs - ' + cardID.length);
+          cardSet.push(body.records[i].pack_cards[0].pack.id);
+          //console.log(cardSet);
+          //console.log(body.records[i].name);
+        }
     }
 });
  
@@ -27,14 +37,30 @@ function respond() {
   if(request.text && (botCardRegex.test(request.text) || botRuleRegex.test(request.text))) {
     //Search for Card info via API
     if (botCardRegex.test(request.text)) {
-      //getCards ();
-      searchText = "Card Search" + request.text.replace(/!card/i, '');
+      searchText = (request.text.replace(/!card/i, ''));
+      console.log(searchText);
+      var cardRegex = /searchText/;
+      var searchResult = [];
+      for (var i=0; i < cards.length; i++) {
+        if (cardRegex.test(cards[i])) {
+          searchResult.push(cards[i]);
+        }
+      }
+      if (searchResult.length == 1) {
+          var match = cards.indexOf(searchResult);
+          searchText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          console.log (searchText);
+        } else {
+          searchText = 'Too Many results - ';
+          for (var i=0; i < searchResult.length; i++) {
+            searchText += searchResult[i] + ' ';
+          }
+        }  
       this.res.writeHead(200);
       postMessage();
       this.res.end(); 
     } else {
-      getCards ();
-      searchText = "Card Search" + request.text.replace(/!rule/i, '');
+      searchText = (request.text.replace(/!rule/i, ''));
       this.res.writeHead(200);
       postMessage();
       this.res.end();
