@@ -1,6 +1,6 @@
 var HTTPS = require('https');
 var request = require('request');
-var url = 'https://api.fiveringsdb.com/cards';
+var url = 'https://netrunnerdb.com/api/2.0/public/cards';
 
 //var querystring = require('querystring');
 var searchText = '';
@@ -20,13 +20,16 @@ request({
         //console.log(body.size); // Print the json response
         var numCards = (body.size);
         for (var i=0; i < numCards; i++) {
-          cards.push(body.records[i].name.toLowerCase());
-          cards[i] = cards[i].replace(/ō/, 'o');
-          cards[i] = cards[i].replace(/ō/, 'o');
-          //console.log('Cards - ' + cards[i]);
-          cardID.push(body.records[i].id.toLowerCase());
+          cards.push(body.data.title);
+          
+          // L5R Code Below
+          //cards.push(body.records[i].name.toLowerCase());
+          //cards[i] = cards[i].replace(/ō/, 'o');
+          //cards[i] = cards[i].replace(/ō/, 'o');
+          console.log('Cards - ' + cards[i]);
+          //cardID.push(body.records[i].id.toLowerCase());
           //console.log('IDs - ' + cardID.length);
-          cardSet.push(body.records[i].pack_cards[0].pack.id.toLowerCase());
+          //cardSet.push(body.records[i].pack_cards[0].pack.id.toLowerCase());
           //console.log(cardSet);
           //console.log(body.records[i].name);
         }
@@ -57,12 +60,12 @@ function respond() {
       if (searchResult.length == 1) {
           var match = cards.indexOf(searchResult[0]);
           //console.log('Match - ' + searchResult + ' ' + match)
-          sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          sendText = '';
           postMessage();
           //console.log (searchText);
         } else if (searchResult.length > 1) {
           match = cards.indexOf(searchResult[0]);
-          sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          sendText = '';
           postMessage();
           sendText = 'Additional Results : ';
           for (var i=1; i < searchResult.length; i++) {
