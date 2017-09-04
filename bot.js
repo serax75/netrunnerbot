@@ -19,7 +19,7 @@ request({
         //console.log(body.size); // Print the json response
         var numCards = (body.data.length);
         console.log(numCards);
-        for (var i=0; i < 100; i++) {
+        for (var i=0; i < numCards; i++) {
           cards.push(body.data[i].title);
           
           // L5R Code Below
@@ -27,7 +27,7 @@ request({
           //cards[i] = cards[i].replace(/ō/, 'o');
           //cards[i] = cards[i].replace(/ō/, 'o');
           console.log('Cards - ' + cards[i]);
-          //cardID.push(body.records[i].id.toLowerCase());
+          cardID.push(body.data[i].code);
           //console.log('IDs - ' + cardID.length);
           //cardSet.push(body.records[i].pack_cards[0].pack.id.toLowerCase());
           //console.log(cardSet);
@@ -60,12 +60,12 @@ function respond() {
       if (searchResult.length == 1) {
           var match = cards.indexOf(searchResult[0]);
           //console.log('Match - ' + searchResult + ' ' + match)
-          sendText = '';
+          sendText = 'https://netrunnerdb.com/card_image/' + cardID[match] + '.png';
           postMessage();
           //console.log (searchText);
         } else if (searchResult.length > 1) {
           match = cards.indexOf(searchResult[0]);
-          sendText = '';
+          sendText = 'https://netrunnerdb.com/card_image/' + cardID[match] + '.png';
           postMessage();
           sendText = 'Additional Results : ';
           for (var i=1; i < searchResult.length; i++) {
