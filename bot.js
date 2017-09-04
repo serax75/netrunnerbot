@@ -9,6 +9,7 @@ var botID = process.env.BOT_ID;
 var cards = [];
 var cardID = [];
 var cardSet = [];
+var body;
 
 request({
     url: url,
@@ -23,9 +24,9 @@ request({
           cards[i] = cards[i].replace(/ō/, 'o');
           cards[i] = cards[i].replace(/ō/, 'o');
           //console.log('Cards - ' + cards[i]);
-          cardID.push(body.records[i].id.toLowerCase());
+          //cardID.push(body.records[i].id.toLowerCase());
           //console.log('IDs - ' + cardID.length);
-          cardSet.push(body.records[i].pack_cards[0].pack.id.toLowerCase());
+          //cardSet.push(body.records[i].pack_cards[0].pack.id.toLowerCase());
           //console.log(cardSet);
           //console.log(body.records[i].name);
         }
@@ -46,22 +47,24 @@ function respond() {
       //console.log(cardRegex);
       var searchResult = [];
       for (var i=0; i < cards.length; i++) {
-        if (cardRegex.test(cards[i])) {
-          searchResult.push(cards[i]);
-          console.log(cards[i]+ ' matches '+searchText+' index '+i);
+        if (cardRegex.test(body.records[i].name.toLowerCase())) {
+          searchResult.push(body.records[i].name.toLowerCase());
+          //console.log(cards[i]+ ' matches '+searchText+' index '+i);
         } else {
-          console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
+          //console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
         }
       }
       if (searchResult.length == 1) {
           var match = cards.indexOf(searchResult[0]);
           //console.log('Match - ' + searchResult + ' ' + match)
-          sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          //sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          sendText = 'https://fiveringsdb.com/static/cards/' + body.records[match].pack_cards[0].pack.id.toLowerCase() + '/' + body.records[i].id.toLowerCase() + '.jpg';
           postMessage();
           //console.log (searchText);
         } else if (searchResult.length > 1) {
           match = cards.indexOf(searchResult[0]);
-          sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          //sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
+          sendText = 'https://fiveringsdb.com/static/cards/' + body.records[match].pack_cards[0].pack.id.toLowerCase() + '/' + body.records[i].id.toLowerCase() + '.jpg';
           postMessage();
           sendText = 'Additional Results : ';
           for (var i=1; i < searchResult.length; i++) {
