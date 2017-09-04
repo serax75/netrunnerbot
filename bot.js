@@ -47,8 +47,8 @@ function respond() {
       //console.log(cardRegex);
       var searchResult = [];
       for (var i=0; i < cards.length; i++) {
-        if (cardRegex.test(body.records[i].name.toLowerCase())) {
-          searchResult.push(body.records[i].name.toLowerCase());
+        if (cardRegex.test(cards[i])) {
+          searchResult.push(cards[i]);
           //console.log(cards[i]+ ' matches '+searchText+' index '+i);
         } else {
           //console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
