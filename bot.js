@@ -17,7 +17,7 @@ request({
 
       if (!error && response.statusCode === 200) {
         //console.log(body.size); // Print the json response
-        var numCards = (body.data.size);
+        var numCards = (body.data.length);
         console.log(numCards);
         for (var i=0; i < 100; i++) {
           cards.push(body.data[i].title);
