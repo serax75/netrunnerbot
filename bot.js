@@ -22,16 +22,17 @@ request({
         for (var i=0; i < numCards; i++) {
           cards.push(body.data[i].title.toLowerCase());
           cardID.push(body.data[i].code);
-          cards[i] = cards[i].replace(/ü/, 'u');
-          cards[i] = cards[i].replace(/₂/, '2');
-          cards[i] = cards[i].replace(/ā/, 'a');
-          cards[i] = cards[i].replace(/ō/, 'o');
-          cards[i] = cards[i].replace(/ō/, 'o');
-          cards[i] = cards[i].replace(/ū/, 'u');
-          cards[i] = cards[i].replace(/ş/, 's');
-          cards[i] = cards[i].replace(/ā/, 'a');
-          cards[i] = cards[i].replace(/é/, 'e');
-          
+          cards[i] = cards[i].replace(/ü/, 'u'); //
+          cards[i] = cards[i].replace(/₂/, '2'); //o2 shortage
+          cards[i] = cards[i].replace(/ā/, 'a'); //palana
+          cards[i] = cards[i].replace(/ō/, 'o'); 
+          cards[i] = cards[i].replace(/ō/, 'o'); 
+          cards[i] = cards[i].replace(/ū/, 'u'); //miraju
+          cards[i] = cards[i].replace(/ş/, 's'); //sifr
+          cards[i] = cards[i].replace(/ā/, 'a'); //palana
+          cards[i] = cards[i].replace(/é/, 'e'); //expose
+          cards[i] = cards[i].replace(/à/, 'a'); //deja vu
+          cards[i] = cards[i].replace(/ä/, 'a'); //doppelganger
           console.log(cards[i]);
         }
       } 
