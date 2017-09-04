@@ -20,18 +20,8 @@ request({
         var numCards = (body.data.length);
         console.log(numCards);
         for (var i=0; i < numCards; i++) {
-          cards.push(body.data[i].title.toLowerCase());
-          
-          // L5R Code Below
-          //cards.push(body.records[i].name.toLowerCase());
-          //cards[i] = cards[i].replace(/ō/, 'o');
-          //cards[i] = cards[i].replace(/ō/, 'o');
-          //console.log('Cards - ' + cards[i]);
+          cards.push(body.data[i].title.toLocaleLowerCase());
           cardID.push(body.data[i].code);
-          //console.log('IDs - ' + cardID.length);
-          //cardSet.push(body.records[i].pack_cards[0].pack.id.toLowerCase());
-          //console.log(cardSet);
-          //console.log(body.records[i].name);
         }
       } 
     });
