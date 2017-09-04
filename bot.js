@@ -1,5 +1,6 @@
 var HTTPS = require('https');
 var request = require('request');
+var latinise = require('voca/latinse');
 var url = 'https://netrunnerdb.com/api/2.0/public/cards';
 
 //var querystring = require('querystring');
@@ -20,20 +21,20 @@ request({
         var numCards = (body.data.length);
         console.log(numCards);
         for (var i=0; i < numCards; i++) {
-          cards.push(body.data[i].title.toLowerCase());
+          cards.push(latinise(body.data[i].title.toLowerCase()));
           cardID.push(body.data[i].code);
-          cards[i] = cards[i].replace(/ü/, 'u'); //Temujin
-          cards[i] = cards[i].replace(/₂/, '2'); //o2 shortage
-          cards[i] = cards[i].replace(/ā/, 'a'); //palana
-          cards[i] = cards[i].replace(/ō/, 'o'); //Draco
-          cards[i] = cards[i].replace(/ō/, 'o'); //Hanzo
-          cards[i] = cards[i].replace(/ū/, 'u'); //miraju
-          cards[i] = cards[i].replace(/ş/, 's'); //sifr
-          cards[i] = cards[i].replace(/ā/, 'a'); //palana
-          cards[i] = cards[i].replace(/é/, 'e'); //expose
-          cards[i] = cards[i].replace(/à/, 'a'); //deja vu
-          cards[i] = cards[i].replace(/ä/, 'a'); //doppelganger
-          //console.log(cards[i]);
+          //cards[i] = cards[i].replace(/ü/, 'u'); //Temujin
+          //cards[i] = cards[i].replace(/₂/, '2'); //o2 shortage
+          //cards[i] = cards[i].replace(/ā/, 'a'); //palana
+          //cards[i] = cards[i].replace(/ō/, 'o'); //Draco
+          //cards[i] = cards[i].replace(/ō/, 'o'); //Hanzo
+          //cards[i] = cards[i].replace(/ū/, 'u'); //miraju
+          //cards[i] = cards[i].replace(/ş/, 's'); //sifr
+          //cards[i] = cards[i].replace(/ā/, 'a'); //palana
+          //cards[i] = cards[i].replace(/é/, 'e'); //expose
+          //cards[i] = cards[i].replace(/à/, 'a'); //deja vu
+          //cards[i] = cards[i].replace(/ä/, 'a'); //doppelganger
+          console.log(cards[i]);
         }
       } 
     });
