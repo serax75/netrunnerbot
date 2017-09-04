@@ -1,6 +1,6 @@
 var HTTPS = require('https');
 var request = require('request');
-var latinise = require('voca/latinise');
+var v = require('voca');
 var url = 'https://netrunnerdb.com/api/2.0/public/cards';
 
 //var querystring = require('querystring');
@@ -21,7 +21,7 @@ request({
         var numCards = (body.data.length);
         console.log(numCards);
         for (var i=0; i < numCards; i++) {
-          cards.push(latinise(body.data[i].title.toLowerCase()));
+          cards.push(v.latinise(body.data[i].title.toLowerCase()));
           cardID.push(body.data[i].code);
           //cards[i] = cards[i].replace(/ü/, 'u'); //Temujin
           //cards[i] = cards[i].replace(/₂/, '2'); //o2 shortage
@@ -72,7 +72,7 @@ function respond() {
           postMessage();
           sendText = 'Additional Results : ';
           for (var i=1; i < searchResult.length; i++) {
-            sendText += searchResult[i];
+            sendText += v.capitalize(searchResult[i]);
             if (i < searchResult.length-1) {
               sendText += ', ';
             }
