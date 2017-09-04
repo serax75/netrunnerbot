@@ -34,7 +34,7 @@ request({
           //cards[i] = cards[i].replace(/é/, 'e'); //expose
           //cards[i] = cards[i].replace(/à/, 'a'); //deja vu
           //cards[i] = cards[i].replace(/ä/, 'a'); //doppelganger
-          console.log(cards[i]);
+          //console.log(cards[i]);
         }
       } 
     });
