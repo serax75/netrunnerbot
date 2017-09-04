@@ -1,6 +1,6 @@
 var HTTPS = require('https');
 var request = require('request');
-var url = 'https://api.fiveringsdb.com/cards';
+var url = 'https://api.netrunnerdb.com/api/2.0/public/cards';
 
 //var querystring = require('querystring');
 var searchText = '';
