@@ -9,7 +9,6 @@ var botID = process.env.BOT_ID;
 var cards = [];
 var cardID = [];
 var cardSet = [];
-var body;
 
 request({
     url: url,
@@ -20,8 +19,8 @@ request({
         //console.log(body.size); // Print the json response
         var numCards = (body.data[0].size);
         console.log(numCards);
-        for (var i=0; i < numCards; i++) {
-          cards.push(body.data.title);
+        for (var i=0; i < 100; i++) {
+          cards.push(body.data[0].title);
           
           // L5R Code Below
           //cards.push(body.records[i].name.toLowerCase());
