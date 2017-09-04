@@ -25,6 +25,13 @@ request({
           cards[i] = cards[i].replace(/ü/, 'u');
           cards[i] = cards[i].replace(/₂/, '2');
           cards[i] = cards[i].replace(/ā/, 'a');
+          cards[i] = cards[i].replace(/ō/, 'o');
+          cards[i] = cards[i].replace(/ō/, 'o');
+          cards[i] = cards[i].replace(/ū/, 'u');
+          cards[i] = cards[i].replace(/ş/, 's');
+          cards[i] = cards[i].replace(/ā/, 'a');
+          cards[i] = cards[i].replace(/é/, 'e');
+          
           console.log(cards[i]);
         }
       } 
