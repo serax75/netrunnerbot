@@ -20,8 +20,10 @@ request({
         var numCards = (body.data.length);
         console.log(numCards);
         for (var i=0; i < numCards; i++) {
-          cards.push(body.data[i].title.toLocaleLowerCase());
+          cards.push(body.data[i].title.toLowerCase());
           cardID.push(body.data[i].code);
+          cards[i] = cards[i].replace(/ü/, 'u');
+          console.log(cards[i]);
         }
       } 
     });
