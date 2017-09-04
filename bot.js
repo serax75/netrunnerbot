@@ -57,14 +57,12 @@ function respond() {
       if (searchResult.length == 1) {
           var match = cards.indexOf(searchResult[0]);
           //console.log('Match - ' + searchResult + ' ' + match)
-          //sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
-          sendText = 'https://fiveringsdb.com/static/cards/' + body.records[match].pack_cards[0].pack.id.toLowerCase() + '/' + body.records[i].id.toLowerCase() + '.jpg';
+          sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
           postMessage();
           //console.log (searchText);
         } else if (searchResult.length > 1) {
           match = cards.indexOf(searchResult[0]);
-          //sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
-          sendText = 'https://fiveringsdb.com/static/cards/' + body.records[match].pack_cards[0].pack.id.toLowerCase() + '/' + body.records[i].id.toLowerCase() + '.jpg';
+          sendText = 'https://fiveringsdb.com/static/cards/' + cardSet[match] + '/' + cardID[match] + '.jpg';
           postMessage();
           sendText = 'Additional Results : ';
           for (var i=1; i < searchResult.length; i++) {
