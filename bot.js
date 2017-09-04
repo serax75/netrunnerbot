@@ -23,6 +23,8 @@ request({
           cards.push(body.data[i].title.toLowerCase());
           cardID.push(body.data[i].code);
           cards[i] = cards[i].replace(/ü/, 'u');
+          cards[i] = cards[i].replace(/₂/, '2');
+          
           console.log(cards[i]);
         }
       } 
