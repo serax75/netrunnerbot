@@ -1,6 +1,6 @@
 var HTTPS = require('https');
 var request = require('request');
-var latinise = require('voca/latinse');
+var latinise = require('voca/latinise');
 var url = 'https://netrunnerdb.com/api/2.0/public/cards';
 
 //var querystring = require('querystring');
