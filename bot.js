@@ -17,10 +17,10 @@ request({
 
       if (!error && response.statusCode === 200) {
         //console.log(body.size); // Print the json response
-        var numCards = (body.data[0].size);
+        var numCards = (body.data.size);
         console.log(numCards);
         for (var i=0; i < 100; i++) {
-          cards.push(body.data[0].title);
+          cards.push(body.data[i].title);
           
           // L5R Code Below
           //cards.push(body.records[i].name.toLowerCase());
