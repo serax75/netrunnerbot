@@ -31,6 +31,7 @@ function respond() {
             console.log(numCards);
             for (var i=0; i < numCards; i++) {
               cards.push(v.latinise(body.data[i].title.toLowerCase()));
+              cards[i] = cards[i].replace(/₂/g, '2');
               cardID.push(body.data[i].code);
             }
           }
@@ -39,7 +40,7 @@ function respond() {
               searchResult.push(cards[i]);
               //console.log(cards[i]+ ' matches '+searchText+' index '+i);
             } else {
-              console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
+              //console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
             }
           }
           
