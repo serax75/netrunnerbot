@@ -34,7 +34,13 @@ function respond() {
               cards.push(v.latinise(body.data[i].title.toLowerCase()));
               cards[i] = cards[i].replace(/₂/g, '2');
               cardID.push(body.data[i].code);
-              cardURL.push(body.data[i].image_url);
+              if (body.data[i].image_url !== undefined)
+              {
+                cardURL.push('https://netrunnerdb.com/card_image/' + cardID + '.png');
+              } else
+              {
+                cardURL.push(body.data[i].image_url);
+              }
             }
           }
           for (var i=0; i < cards.length; i++) {
