@@ -12,6 +12,7 @@ function respond() {
       searchText = '',
       cards = [],
       cardID = [],
+      cardURL = [],
       searchResult = [];
 
   if(request.text && (botCardRegex.test(request.text) || botRuleRegex.test(request.text))) {
@@ -33,6 +34,7 @@ function respond() {
               cards.push(v.latinise(body.data[i].title.toLowerCase()));
               cards[i] = cards[i].replace(/₂/g, '2');
               cardID.push(body.data[i].code);
+              cardURL.push(body.data[i].image_url);
             }
           }
           for (var i=0; i < cards.length; i++) {
@@ -47,12 +49,12 @@ function respond() {
           if (searchResult.length == 1) {
             var match = cards.indexOf(searchResult[0]);
              //console.log('Match - ' + searchResult + ' ' + match)
-            sendText = 'https://netrunnerdb.com/card_image/' + cardID[match] + '.png';
+            sendText = cardURL[match];
             postMessage();
             //console.log (searchText);
           } else if (searchResult.length > 1) {
             match = cards.indexOf(searchResult[0]);
-            sendText = 'https://netrunnerdb.com/card_image/' + cardID[match] + '.png';
+            sendText = cardURL[0];
             postMessage();
             sendText = 'Additional Results : ';
             for (var i=1; i < searchResult.length; i++) {
