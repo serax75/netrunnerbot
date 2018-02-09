@@ -36,7 +36,7 @@ function respond() {
               cardID.push(body.data[i].code);
               if (body.data[i].image_url !== undefined)
               {
-                cardURL.push('https://netrunnerdb.com/card_image/' + cardID + '.png');
+                cardURL.push('https://netrunnerdb.com/card_image/' + cardID[i] + '.png');
               } else
               {
                 cardURL.push(body.data[i].image_url);
