@@ -36,10 +36,10 @@ function respond() {
               cardID.push(body.data[i].code);
               if (body.data[i].image_url !== undefined)
               {
-                cardURL.push('https://netrunnerdb.com/card_image/' + body.data[i].code + '.png');
+                cardURL.push(body.data[i].image_url);
               } else
               {
-                cardURL.push(body.data[i].image_url);
+                cardURL.push('https://netrunnerdb.com/card_image/' + body.data[i].code + '.png');
               }
             }
           }
