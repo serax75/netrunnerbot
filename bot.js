@@ -21,6 +21,7 @@ function respond() {
     if (botCardRegex.test(request.text)) {
       searchText = (request.text.replace(/!card /i, ''));
       var cardRegex = new RegExp (searchText.toLowerCase());
+      console.log ('Input = ' + searchText);
       REQ.get({
         url: url,
         json: true
@@ -46,7 +47,7 @@ function respond() {
           for (var i=0; i < cards.length; i++) {
             if (cardRegex.test(cards[i])) {
               searchResult.push(cards[i]);
-              //console.log(cards[i]+ ' matches '+searchText+' index '+i);
+              console.log(cards[i]+ ' matches '+searchText+' index '+i);
             } else {
               //console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
             }
@@ -54,13 +55,14 @@ function respond() {
           
           if (searchResult.length == 1) {
             var match = cards.indexOf(searchResult[0]);
-             //console.log('Match - ' + searchResult + ' ' + match)
+            //console.log('Match - ' + searchResult + ' ' + match)
             sendText = cardURL[match];
             postMessage();
             //console.log (searchText);
           } else if (searchResult.length > 1) {
             match = cards.indexOf(searchResult[0]);
             sendText = cardURL[0];
+            console.log ('Multiple Matches. First match = ' + searchResult[0] + ' ' + cardURL[0]);
             postMessage();
             sendText = 'Additional Results : ';
             for (var i=1; i < searchResult.length; i++) {
@@ -69,6 +71,7 @@ function respond() {
                 sendText += ', ';
               }
             }
+            console.log(sendText);
             postMessage();
           } else{
             sendText = 'No Results Found - ' + v.titleCase(searchText);
