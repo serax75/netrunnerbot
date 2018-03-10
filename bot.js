@@ -30,7 +30,7 @@ function respond() {
           if (!error && response.statusCode === 200) {
             //console.log(body.size); // Print the json response
             var numCards = (body.data.length);
-            console.log(numCards);
+            console.log('Number of cards = ' + numCards);
             for (var i=0; i < numCards; i++) {
               cards.push(v.latinise(body.data[i].title.toLowerCase()));
               cards[i] = cards[i].replace(/₂/g, '2');
