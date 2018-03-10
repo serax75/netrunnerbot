@@ -62,7 +62,7 @@ function respond() {
             //console.log (searchText);
           } else if (searchResult.length > 1) {
             match = cards.indexOf(searchResult[0]);
-            sendText = cardURL[0];
+            sendText = cardURL[match];
             //console.log ('Multiple Matches. First match = ' + match + ' ' + cardURL[0]);
             postMessage();
             sendText = 'Additional Results : ';
