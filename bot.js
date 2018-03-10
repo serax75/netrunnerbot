@@ -63,7 +63,7 @@ function respond() {
           } else if (searchResult.length > 1) {
             match = cards.indexOf(searchResult[0]);
             sendText = cardURL[0];
-            console.log ('Multiple Matches. First match = ' + match + ' ' + cardURL[0]);
+            //console.log ('Multiple Matches. First match = ' + match + ' ' + cardURL[0]);
             postMessage();
             sendText = 'Additional Results : ';
             for (var i=1; i < searchResult.length; i++) {
@@ -72,7 +72,7 @@ function respond() {
                 sendText += ', ';
               }
             }
-            console.log(sendText);
+            //console.log(sendText);
             postMessage();
           } else{
             sendText = 'No Results Found - ' + v.titleCase(searchText);
