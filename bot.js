@@ -30,7 +30,7 @@ function respond() {
           if (!error && response.statusCode === 200) {
             //console.log(body.size); // Print the json response
             var numCards = (body.data.length);
-            console.log('Number of cards = ' + numCards);
+            //console.log('Number of cards = ' + numCards);
             for (var i=0; i < numCards; i++) {
               cards.push(v.latinise(body.data[i].title.toLowerCase()));
               cards[i] = cards[i].replace(/₂/g, '2');
@@ -44,18 +44,19 @@ function respond() {
               }
             }
           }
+          console.log('Number of Card URLs = ' + cardURL.length);
           for (var i=0; i < cards.length; i++) {
             if (cardRegex.test(cards[i])) {
               searchResult.push(cards[i]);
               console.log(cards[i]+ ' matches '+searchText+' index '+i);
             } else {
-              console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
+              //console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
             }
           }
           
           if (searchResult.length == 1) {
             var match = cards.indexOf(searchResult[0]);
-            //console.log('Match - ' + searchResult + ' ' + match)
+            console.log('Match - ' + searchResult[0] + ' ' + cardURL[match]);
             sendText = cardURL[match];
             postMessage();
             //console.log (searchText);
