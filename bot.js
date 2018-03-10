@@ -53,7 +53,7 @@ function respond() {
               //console.log('Tested \"' + searchText.toLowerCase() + '\" against ' +  cards[i] + ' - No Match');
             }
           }
-          
+          console.log ('Number of Matches = ' + searchResult.length);
           if (searchResult.length == 1) {
             var match = cards.indexOf(searchResult[0]);
             console.log('Match - ' + searchResult[0] + ' ' + cardURL[match]);
@@ -63,7 +63,7 @@ function respond() {
           } else if (searchResult.length > 1) {
             match = cards.indexOf(searchResult[0]);
             sendText = cardURL[0];
-            console.log ('Multiple Matches. First match = ' + searchResult[0] + ' ' + cardURL[0]);
+            console.log ('Multiple Matches. First match = ' + match + ' ' + cardURL[0]);
             postMessage();
             sendText = 'Additional Results : ';
             for (var i=1; i < searchResult.length; i++) {
